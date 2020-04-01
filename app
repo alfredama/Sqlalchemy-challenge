@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 import datetime as dt
 from flask import Flask, jsonify
-
+import flask
 #database setup##
 engine = create_engine("sqlite:///Resources/hawaii.sqlite")
 #reflect the exisiting database 
@@ -30,11 +30,11 @@ def welcome():
    
     return (
         f"Available Routes:<br/>"
-        f"/api/v1.0/precipitation HT returns all dates and coreesponfing preciptitation in the data base <br/>"
+        f"/api/v1.0/precipitation returns all dates and coreesponfing preciptitation in the data base \n"
         f"/api/v1.0/stations returns all stations in the station table<br/>"
         f"/api/v1.0/tobs   returns all temperatures observed in the station from one year back table<br/>"
-        f"/api/v1.0/<start> returns min temperature , avg temperature and max temperature over a defined start time .for ex /api/v1.0/2015-06-15 <br/>"
-        f"/api/v1.0/<start>/<end> returns min temperature , avg temperature and max temperature over a defined start time .for ex /api/v1.0/2015-06-15/2017-10-15<br/>"
+        f"/api/v1.0/{flask.escape('<<start>>')}returns min temperature , avg temperature and max temperature over a defined start time .for ex /api/v1.0/2015-06-15 <br/>"
+        f"/api/v1.0/{flask.escape('<start>/<end>')}returns min temperature , avg temperature and max temperature over a defined start time .for ex /api/v1.0/2015-06-15/2017-10-15<br/>"
     )
 
 @app.route("/api/v1.0/precipitation")
